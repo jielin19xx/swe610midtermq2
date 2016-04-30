@@ -40,6 +40,7 @@ class Game
 
 	def play_game
 		number = generate_number
+		
 
 		loop do
 			Console_Screen.cls
@@ -55,14 +56,17 @@ class Game
 
 			if reply == number then
 				Console_Screen.cls
+				$num_guesses += 1
 				print "You have guessed the number! Press Enter to continue."
 				Console_Screen.pause
 				break
 			elsif reply < number then
+				$num_guesses += 1
 				Console_Screen.cls
 				print "Your guess is too low! Press enter to continue."
 				Console_Screen.pause
 			elsif reply > number then
+				$num_guesses += 1
 				Console_Screen.cls
 				print "Your guess is too high! Press enter to continue."
 				Console_Screen.pause
@@ -78,6 +82,9 @@ class Game
 	end
 
 	$noRight = 0
+	$num_guesses = 0 #total number of guesses
+	$num_games = 0   #total number of games
+	$avg_guess = 0   #avrage guesses attempts
 
 	Console_Screen = Screen.new
 
@@ -109,11 +116,12 @@ class Game
 		SQ.display_instruction
 
 		loop do
+			$num_games += 1 #add one each time the user play the game
 			SQ.play_game
-
+			$avg_guess = $num_guesses/$num_games
 			Console_Screen.cls
 
-			print "Would you like to play again? (y/n): "
+			print "You have played #{$num_games} times. Your avarage guess is #{$avg_guess}    " + "Would you like to play again? (y/n): "
 
 			playAgain = STDIN.gets
 			playAgain.chop!
