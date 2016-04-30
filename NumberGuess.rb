@@ -55,42 +55,45 @@ class Game
 				puts "You have played 10 times. You lost the game"
 				Console_Screen.pause
 			else
-			Console_Screen.cls
-			print "\nEnter your guess and press the enter key: "
-
-			reply = STDIN.gets
-			reply.chop!
-			if reply.numeric? == false
-				puts "The number you enter is invalid"
-				Console_Screen.pause
-			else
-			reply = reply.to_i
-
-			if reply < 1 or reply > 1000 then
-				redo # redo the ciurrent iteration of the loop
-			end
-
-			if reply == number then
 				Console_Screen.cls
-				$num_guesses += 1
-				print "You have guessed the number! Press Enter to continue."
-				Console_Screen.pause
-				break
-			elsif reply < number then
-				$num_guesses += 1
-				Console_Screen.cls
-				print "Your guess is too low! Press enter to continue."
-				Console_Screen.pause
-			elsif reply > number then
-				$num_guesses += 1
-				Console_Screen.cls
-				print "Your guess is too high! Press enter to continue."
-				Console_Screen.pause
-			end
+				print "\nEnter your guess and press the enter key: "
+
+				reply = STDIN.gets
+				reply.chop!
+				if reply == "GOD"
+					puts "The number is #{number}"
+				else
+					if reply.numeric? == false
+						puts "The number you enter is invalid"
+						Console_Screen.pause
+					else
+						reply = reply.to_i
+
+						if reply < 1 or reply > 1000 then
+							redo # redo the ciurrent iteration of the loop
+						end
+
+						if reply == number then
+							Console_Screen.cls
+							$num_guesses += 1
+							print "You have guessed the number! Press Enter to continue."
+							Console_Screen.pause
+							break
+						elsif reply < number then
+							$num_guesses += 1
+							Console_Screen.cls
+							print "Your guess is too low! Press enter to continue."
+							Console_Screen.pause
+						elsif reply > number then
+							$num_guesses += 1
+							Console_Screen.cls
+							print "Your guess is too high! Press enter to continue."
+							Console_Screen.pause
+						end
 			
+					end
+				end
 			end
-
-		end
 		end	
 	end
 
