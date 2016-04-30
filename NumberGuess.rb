@@ -16,6 +16,13 @@ class Screen
 
 end
 
+class String
+  def numeric?
+    Float(self) != nil rescue false
+  end
+end
+
+
 class Game
 	def display_greeting
 		Console_Screen.cls
@@ -37,10 +44,7 @@ class Game
 	def generate_number
 		return randomNo = 1 + rand(100)
 	end
-	
-	def is_number?
-    self.to_f.to_s == self.to_s || self.to_i.to_s == self.to_s
-	end
+
 
 	def play_game
 		number = generate_number
@@ -52,6 +56,10 @@ class Game
 
 			reply = STDIN.gets
 			reply.chop!
+			if reply.numeric? == false
+				puts "The number you enter is invalid"
+				Console_Screen.pause
+			else
 			reply = reply.to_i
 
 			if reply < 1 or reply > 1000 then
@@ -74,6 +82,8 @@ class Game
 				Console_Screen.cls
 				print "Your guess is too high! Press enter to continue."
 				Console_Screen.pause
+			end
+			
 			end
 
 		end
