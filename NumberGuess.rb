@@ -42,7 +42,7 @@ class Game
 	end
 
 	def generate_number
-		return randomNo = 1 + rand(100)
+		return randomNo = 1 + rand(1000)
 	end
 
 
@@ -51,6 +51,10 @@ class Game
 		
 
 		loop do
+			if $num_guesses > 10
+				puts "You have played 10 times. You lost the game"
+				Console_Screen.pause
+			else
 			Console_Screen.cls
 			print "\nEnter your guess and press the enter key: "
 
@@ -87,7 +91,7 @@ class Game
 			end
 
 		end
-			
+		end	
 	end
 
 	def display_credits
